@@ -1,35 +1,24 @@
 import Image from "next/image";
-import Link from "next/link"
-import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6"
+import Link from "next/link";
+import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 
 const socials = [
-  {
-    icon: FaGithub,
-    href: "https://github.com/paytonjewell/",
-    label: "GitHub"
-  },
-  {
-    icon: FaLinkedin,
-    href: "https://linkedin.com/in/payton-pierce/",
-    label: "LinkedIn"
-  },
-  {
-    icon: FaXTwitter,
-    href: "https://x.com/paytonpiercedev",
-    label: "Twitter"
-  }
+  { icon: FaGithub, href: "https://github.com/paytonjewell/", label: "GitHub" },
+  { icon: FaLinkedin, href: "https://linkedin.com/in/payton-pierce/", label: "LinkedIn" },
+  { icon: FaXTwitter, href: "https://x.com/paytonpiercedev", label: "Twitter" }
 ];
 
 const bulletPoints = [
-  { icon: "🧀", text: "based in wisconsin" },
+  { icon: "🧀", label: "based in wisconsin" },
   { 
     icon: "📧", 
-    text: "let's get in touch!", 
+    linkText: "let's get in touch!", 
     href: "mailto:paytontaylor96@gmail.com" 
   },
   { 
     icon: "📝", 
-    text: "download my resume", 
+    label: "download my ", 
+    linkText: "resume", 
     href: "/PaytonPierceResume.pdf", 
     download: "PaytonPierceResume" 
   }
@@ -39,15 +28,15 @@ export default function Home() {
   return (
     <div className="flex flex-col md:flex-row justify-center items-center gap-10 md:gap-20">
       {/* Profile Picture */}
-     <div className="relative w-[350px] md:w-2/5">
-     <Image 
-        src="/self.png" 
-        alt="Profile picture of Payton" 
-        width={350}
-        height={350}
-        className="bg-gradient-to-br from-indigo-500 to-fuchsia-500 rounded-full p-3 w-full h-auto"
-      />
-     </div>
+      <div className="relative w-[350px] md:w-2/5">
+        <Image 
+          src="/self.png" 
+          alt="Profile picture of Payton" 
+          width={350} 
+          height={350} 
+          className="bg-gradient-to-br from-indigo-500 to-fuchsia-500 rounded-full p-3 w-full h-auto"
+        />
+      </div>
 
       {/* Bio Section */}
       <div>
@@ -64,13 +53,12 @@ export default function Home() {
 
         {/* Bullet Points */}
         <ul className="space-y-1 text-xl text-center md:text-left">
-          {bulletPoints.map(({ icon, text, href, download }, index) => (
+          {bulletPoints.map(({ icon, label, linkText, href, download }, index) => (
             <li key={index}>
               <span className="mr-2">{icon}</span>
-              {href ? (
-                <a href={href} download={download} className="link link-primary">{text}</a>
-              ) : (
-                text
+              {label}
+              {href && (
+                <a href={href} download={download} className="link link-primary">{linkText}</a>
               )}
             </li>
           ))}
